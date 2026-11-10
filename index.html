@@ -1,0 +1,641 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNest | Read Dream Grow</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff9eb;
+            color: #493323;
+        }
+
+        header {
+            background: #f5e7ca;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #70451f;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        nav a {
+            color: #493323;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #a56a2b;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 75px 20px;
+            background: #f2dfb9;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .hero button,
+        .book-card button,
+        .cart-item button {
+            background: #70451f;
+            color: white;
+            border: none;
+            padding: 11px 17px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px 3px;
+        }
+
+        button:hover {
+            background: #4d2e16;
+        }
+
+        section {
+            padding: 40px 7%;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .category-card {
+            background: #f5e7ca;
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .category-card:hover {
+            background: #ead5ad;
+        }
+
+        .search-box {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .search-box input {
+            width: 80%;
+            max-width: 500px;
+            padding: 13px;
+            border: 1px solid #b99a70;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .filter-buttons button {
+            background: #ead5ad;
+            color: #493323;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .filter-buttons button:hover {
+            background: #c99c60;
+        }
+
+        .book-container {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .book-card {
+            background: #f5e7ca;
+            padding: 18px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 0;
+        }
+
+        .book-card img,
+        .book-cover {
+            display: block;
+            width: 100%;
+            max-width: 220px;
+            height: 260px;
+            object-fit: contain;
+            margin: 0 auto 15px;
+            border-radius: 8px;
+            background: #ead5ad;
+            padding: 8px;
+        }
+
+        .book-cover {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+        }
+
+        .book-card h3 {
+            margin: 10px 0;
+        }
+
+        .book-card p {
+            font-size: 14px;
+        }
+
+        .cart-section {
+            background: #f2dfb9;
+        }
+
+        .cart-item {
+            background: #fff9eb;
+            padding: 12px;
+            border-radius: 7px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .about {
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        footer {
+            background: #493323;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .book-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .category-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .book-container {
+                grid-template-columns: 1fr;
+            }
+
+            .category-container {
+                grid-template-columns: 1fr;
+            }
+
+            .book-card img,
+            .book-cover {
+                max-width: 190px;
+                height: 240px;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">📚 BookNest</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#books">All Books</a>
+        <a href="#about">About Us</a>
+        <a href="account.html">Login / Signup</a>
+        <a href="#cart">Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h1>Welcome to BookNest</h1>
+    <p>Read • Dream • Grow</p>
+    <p>Discover your next favourite book with us.</p>
+    <button onclick="document.getElementById('books').scrollIntoView()">
+        Explore Books
+    </button>
+</section>
+
+<section id="categories">
+    <h2>Explore Categories</h2>
+
+    <div class="category-container">
+        <div class="category-card" onclick="filterBooks('children')">
+            📖 Children's Books
+        </div>
+
+        <div class="category-card" onclick="filterBooks('fiction')">
+            📚 Fiction & Novels
+        </div>
+
+        <div class="category-card" onclick="filterBooks('educational')">
+            🎓 Educational
+        </div>
+
+        <div class="category-card" onclick="filterBooks('technology')">
+            💻 Programming & Technology
+        </div>
+
+        <div class="category-card" onclick="filterBooks('competitive')">
+            📝 Competitive Exams
+        </div>
+
+        <div class="category-card" onclick="filterBooks('motivational')">
+            🌟 Motivation & Personal Growth
+        </div>
+    </div>
+</section>
+
+<section id="books">
+    <h2>Our Book Collection</h2>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="bookSearch"
+            placeholder="Search books by title..."
+        >
+    </div>
+
+    <div class="filter-buttons">
+        <button onclick="filterBooks('all')">All Books</button>
+        <button onclick="filterBooks('children')">Children</button>
+        <button onclick="filterBooks('fiction')">Fiction</button>
+        <button onclick="filterBooks('educational')">Educational</button>
+        <button onclick="filterBooks('technology')">Technology</button>
+        <button onclick="filterBooks('competitive')">Competitive Exams</button>
+        <button onclick="filterBooks('motivational')">Motivation</button>
+    </div>
+
+    <div class="book-container">
+        <p>Loading books from BookNest...</p>
+    </div>
+</section>
+
+<section class="cart-section" id="cart">
+    <h2>🛒 Your Shopping Cart</h2>
+
+    <div id="cartItems"></div>
+
+    <h3>Total: <span id="cartTotal">₹0.00</span></h3>
+
+    <button
+        class="hero button"
+        onclick="goToCheckout()"
+        style="background:#70451f;color:white;border:none;padding:12px 20px;border-radius:6px;cursor:pointer;"
+    >
+        Proceed to Checkout
+    </button>
+</section>
+
+<section class="about" id="about">
+    <h2>About BookNest</h2>
+
+    <p>
+        BookNest is your online destination for discovering books
+        across different categories. From children's stories to
+        programming guides, we bring knowledge and imagination
+        together in one place.
+    </p>
+
+    <h3>Read • Dream • Grow</h3>
+</section>
+
+<footer>
+    <p>© 2026 BookNest. All Rights Reserved.</p>
+    <p>Made with ❤️ for book lovers.</p>
+</footer>
+
+<script>
+    let allBooks = [];
+
+    // Load books from Django
+    async function loadBooksFromDatabase() {
+        try {
+            const response = await fetch(
+                "http://127.0.0.1:8000/api/books/"
+            );
+
+            if (!response.ok) {
+                throw new Error("Could not load books.");
+            }
+
+            allBooks = await response.json();
+
+            displayBooks(allBooks);
+
+        } catch (error) {
+            console.error(error);
+
+            document.querySelector(".book-container").innerHTML =
+                "<p>Unable to load books. Please start Django server.</p>";
+        }
+    }
+
+    // Display books
+    function displayBooks(books) {
+        const container = document.querySelector(".book-container");
+
+        container.innerHTML = "";
+
+        if (books.length === 0) {
+            container.innerHTML = "<p>No books found.</p>";
+            return;
+        }
+
+        books.forEach(book => {
+            const card = document.createElement("div");
+            card.className = "book-card";
+
+            const image = document.createElement("img");
+
+            if (book.image) {
+                image.src = book.image;
+                image.alt = book.title;
+            } else {
+                image.style.display = "none";
+            }
+
+            const title = document.createElement("h3");
+            title.textContent = book.title;
+
+            const category = document.createElement("p");
+            category.textContent = book.category;
+
+            const format = document.createElement("p");
+            format.textContent = book.format;
+
+            const price = document.createElement("strong");
+            price.textContent = "₹" + Number(book.price).toFixed(2);
+
+            const description = document.createElement("p");
+            description.textContent = book.description || "";
+
+            const addButton = document.createElement("button");
+            addButton.textContent = "Add to Cart";
+            addButton.addEventListener("click", function() {
+                addToCart(book.id);
+            });
+
+            const detailsButton = document.createElement("button");
+            detailsButton.textContent = "View Details";
+            detailsButton.addEventListener("click", function() {
+                viewDetails(book.id);
+            });
+
+            if (book.image) {
+                card.appendChild(image);
+            } else {
+                const cover = document.createElement("div");
+                cover.className = "book-cover";
+                cover.textContent = "📚";
+                card.appendChild(cover);
+            }
+
+            card.appendChild(title);
+            card.appendChild(category);
+            card.appendChild(format);
+            card.appendChild(price);
+            card.appendChild(description);
+            card.appendChild(addButton);
+            card.appendChild(detailsButton);
+
+            container.appendChild(card);
+        });
+    }
+
+    // Search books
+    document.getElementById("bookSearch").addEventListener(
+        "input",
+        function() {
+            const searchText = this.value.toLowerCase();
+
+            const filteredBooks = allBooks.filter(book =>
+                book.title.toLowerCase().includes(searchText)
+            );
+
+            displayBooks(filteredBooks);
+        }
+    );
+
+    // Filter categories
+    function filterBooks(category) {
+        document.getElementById("bookSearch").value = "";
+
+        if (category === "all") {
+            displayBooks(allBooks);
+        } else {
+            const filteredBooks = allBooks.filter(book =>
+                book.category === category
+            );
+
+            displayBooks(filteredBooks);
+        }
+    }
+
+    // Add to cart using the database ID
+    function addToCart(bookId) {
+        const book = allBooks.find(item => item.id === bookId);
+
+        if (!book) {
+            alert("Book not found!");
+            return;
+        }
+
+        let cart = JSON.parse(
+            localStorage.getItem("booknestCart")
+        ) || [];
+
+        const existingItem = cart.find(item => item.id === book.id);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({
+                id: book.id,
+                name: book.title,
+                price: Number(book.price),
+                quantity: 1
+            });
+        }
+
+        localStorage.setItem(
+            "booknestCart",
+            JSON.stringify(cart)
+        );
+
+        updateCart();
+
+        alert(book.title + " added to cart!");
+    }
+
+    // View details
+    function viewDetails(bookId) {
+        const book = allBooks.find(item => item.id === bookId);
+
+        if (!book) {
+            alert("Book not found!");
+            return;
+        }
+
+        localStorage.setItem(
+            "selectedBook",
+            JSON.stringify(book)
+        );
+
+        window.location.href = "book-details.html";
+    }
+
+    // Update cart
+    function updateCart() {
+        let cart = JSON.parse(
+            localStorage.getItem("booknestCart")
+        ) || [];
+
+        const cartItems = document.getElementById("cartItems");
+        const cartTotal = document.getElementById("cartTotal");
+        const cartCount = document.getElementById("cartCount");
+
+        let total = 0;
+        let count = 0;
+
+        cartItems.innerHTML = "";
+
+        cart.forEach((item, index) => {
+            total += Number(item.price) * Number(item.quantity);
+            count += Number(item.quantity);
+
+            const row = document.createElement("div");
+            row.className = "cart-item";
+
+            const name = document.createElement("span");
+            name.textContent = item.name + " × " + item.quantity;
+
+            const price = document.createElement("span");
+            price.textContent =
+                "₹" + (item.price * item.quantity).toFixed(2);
+
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+
+            removeButton.addEventListener("click", function() {
+                removeFromCart(index);
+            });
+
+            row.appendChild(name);
+            row.appendChild(price);
+            row.appendChild(removeButton);
+
+            cartItems.appendChild(row);
+        });
+
+        cartTotal.textContent = "₹" + total.toFixed(2);
+        cartCount.textContent = count;
+    }
+
+    // Remove from cart
+    function removeFromCart(index) {
+        let cart = JSON.parse(
+            localStorage.getItem("booknestCart")
+        ) || [];
+
+        cart.splice(index, 1);
+
+        localStorage.setItem(
+            "booknestCart",
+            JSON.stringify(cart)
+        );
+
+        updateCart();
+    }
+
+    // Checkout
+    function goToCheckout() {
+        let cart = JSON.parse(
+            localStorage.getItem("booknestCart")
+        ) || [];
+
+        if (cart.length === 0) {
+            alert("Your cart is empty. Please add a book first.");
+            return;
+        }
+
+        window.location.href = "checkout.html";
+    }
+
+    // Load everything
+    document.addEventListener("DOMContentLoaded", function() {
+        updateCart();
+        loadBooksFromDatabase();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNest | Book Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">📚 BookNest</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#books">All Books</a>
+            <a href="index.html#cart-section">Cart</a>
+        </nav>
+    </header>
+
+    <section class="section">
+        <div class="details-box">
+            <img id="bookImage" class="details-image"
+     src="" alt="Book cover">
+
+            <h2 id="bookName">Book Name</h2>
+
+            <p id="bookCategory"></p>
+            <p id="bookFormat"></p>
+            <p id="bookDescription"></p>
+            
+            <h3 id="bookPrice"></h3>
+
+            <a href="index.html#books" class="shop-btn">
+                Back to Books
+            </a>
+        </div>
+    </section>
+
+    <script>
+        const book = JSON.parse(
+            localStorage.getItem("selectedBook")
+        );
+
+        if (book) {
+            document.getElementById("bookName").textContent = book.name;
+            const image = document.getElementById("bookImage");
+
+if (book.image) {
+    image.src = book.image;
+    image.style.display = "block";
+} else {
+    image.style.display = "none";
+}
+ const descriptions = {
+        "Little Story Book": "Enjoy fun stories, colourful adventures and wonderful lessons for young readers.",
+        "Learn Python": "A beginner-friendly introduction to Python programming.",
+        "Think Positive": "Explore positive thinking, confidence and personal growth.",
+        "Adventure Tales": "Discover exciting journeys and unforgettable adventures.",
+        "Engineering Mathematics": "Study important mathematical concepts for engineering students.",
+        "UPSC Preparation Guide": "A guide for competitive examination preparation.",
+        "HTML Beginner Guide": "Learn HTML fundamentals and create web pages.",
+        "The Power of Habits": "Explore habits, productivity and personal development."
+    };
+            document.getElementById("bookCategory").textContent =
+                "Category: " + book.category;
+            document.getElementById("bookFormat").textContent =
+                "Format: " + book.format;
+            document.getElementById("bookPrice").textContent =
+                book.price == 0 ? "FREE" : "Price: ₹" + book.price;
+        } else {
+            document.getElementById("bookName").textContent =
+                "No book selected";
+        }
+    </script>
+
+</body>
+</html>

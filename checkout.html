@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNest - Checkout</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff9eb;
+            color: #493323;
+            margin: 0;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 30px auto;
+            background: #f5e7ca;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            box-sizing: border-box;
+            border: 1px solid #b99a70;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #70451f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #4d2e16;
+        }
+
+        #orderMessage {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .book-row {
+            padding: 10px;
+            border-bottom: 1px solid #cbb38e;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>BookNest Checkout</h1>
+    <p style="text-align:center;">Complete your details to place your order.</p>
+
+    <h2>Your Order</h2>
+    <div id="orderItems"></div>
+    <h3 id="totalAmount">Total: ₹0</h3>
+
+    <h2>Customer Details</h2>
+
+    <form id="checkoutForm">
+
+        <label>Full Name</label>
+        <input type="text" id="customerName" required>
+
+        <label>Email Address</label>
+        <input type="email" id="customerEmail" required>
+
+        <label>Phone Number</label>
+        <input type="tel" id="customerPhone" required>
+
+        <label>Delivery Address</label>
+        <textarea id="customerAddress" required></textarea>
+
+        <label>Payment Method</label>
+        <select id="paymentMethod" required>
+            <option value="cod">Cash on Delivery</option>
+            <option value="demo">Demo UPI (not real payment)</option>
+        </select>
+
+        <button type="submit">Place Order</button>
+
+    </form>
+
+    <p id="orderMessage"></p>
+
+</div>
+
+<script>
+    let cart = JSON.parse(localStorage.getItem("booknestCart")) || [];
+
+    function displayOrder() {
+        const orderItems = document.getElementById("orderItems");
+        let total = 0;
+
+        orderItems.innerHTML = "";
+
+        cart.forEach(item => {
+            total += Number(item.price) * Number(item.quantity);
+
+            orderItems.innerHTML += `
+                <div class="book-row">
+                    ${item.name} × ${item.quantity}
+                    - ₹${Number(item.price) * Number(item.quantity)}
+                </div>
+            `;
+        });
+
+        document.getElementById("totalAmount").textContent =
+            "Total: ₹" + total.toFixed(2);
+    }
+
+    displayOrder();
+
+    document.getElementById("checkoutForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+
+        const orderData = {
+            customer_name: document.getElementById("customerName").value,
+            email: document.getElementById("customerEmail").value,
+            phone: document.getElementById("customerPhone").value,
+            address: document.getElementById("customerAddress").value,
+            items: cart.map(item => ({
+                id: item.id,
+                quantity: item.quantity
+            }))
+        };
+
+        const message = document.getElementById("orderMessage");
+        message.textContent = "Placing your order...";
+
+        try {
+            const response = await fetch("http://127.0.0.1:8000/api/orders/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(orderData)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || "Unable to place order.");
+            }
+
+            message.textContent =
+                "Order placed successfully! Order ID: " + result.order_id +
+                " | Total: ₹" + result.total;
+
+            localStorage.removeItem("booknestCart");
+            cart = [];
+            displayOrder();
+            document.getElementById("checkoutForm").reset();
+
+        } catch (error) {
+            message.textContent = "Error: " + error.message;
+        }
+    });
+</script>
+
+</body>
+</html>

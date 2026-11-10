@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNest | Login & Signup</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff9eb;
+            color: #493323;
+        }
+
+        header {
+            background: #f5e7ca;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #70451f;
+        }
+
+        nav a {
+            color: #493323;
+            text-decoration: none;
+            margin-left: 18px;
+            font-weight: bold;
+        }
+
+        .account-section {
+            padding: 45px 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .account-box {
+            background: #f5e7ca;
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #70451f;
+        }
+
+        .account-box p { text-align: center; }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #b99a70;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #70451f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover { background: #4d2e16; }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .logout-btn { background: #9b382c; }
+        .logout-btn:hover { background: #70251e; }
+
+        hr {
+            margin: 30px 0;
+            border: 1px solid #d7bd94;
+        }
+
+        .message {
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .hidden { display: none; }
+
+        footer {
+            background: #493323;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">📚 BookNest</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#books">All Books</a>
+        <a href="index.html#cart">Cart</a>
+    </nav>
+</header>
+
+<section class="account-section">
+
+    <div class="account-box">
+
+        <!-- LOGGED IN SECTION -->
+        <div id="welcomeSection" class="hidden">
+            <h2>Welcome to BookNest 🤎</h2>
+            <h3 id="welcomeName"></h3>
+            <p>You are successfully logged in!</p>
+
+            <button onclick="window.location.href='index.html'">
+                Continue Shopping
+            </button>
+
+            <button class="logout-btn" id="logoutButton">
+                Logout
+            </button>
+        </div>
+
+        <!-- LOGIN AND SIGNUP SECTION -->
+        <div id="accountForms">
+
+            <h2>Welcome to BookNest 🤎</h2>
+            <p>Login to continue your reading journey.</p>
+
+            <h3>Login</h3>
+
+            <form id="loginForm">
+
+                <label>Email Address</label>
+                <input type="email" id="loginEmail"
+                       placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input type="password" id="loginPassword"
+                       placeholder="Enter your password" required>
+
+                <button type="submit">Login</button>
+
+            </form>
+
+            <p id="loginMessage" class="message"></p>
+
+            <hr>
+
+            <h3>Create a New Account</h3>
+
+            <form id="signupForm">
+
+                <label>Full Name</label>
+                <input type="text" id="signupName"
+                       placeholder="Enter your name" required>
+
+                <label>Email Address</label>
+                <input type="email" id="signupEmail"
+                       placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input type="password" id="signupPassword"
+                       placeholder="Create a password"
+                       minlength="6" required>
+
+                <button type="submit">Create Account</button>
+
+            </form>
+
+            <p id="signupMessage" class="message"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 BookNest. All rights reserved.</p>
+</footer>
+
+<script>
+    const API_URL = "http://127.0.0.1:8000/api/";
+
+    const accountForms = document.getElementById("accountForms");
+    const welcomeSection = document.getElementById("welcomeSection");
+    const welcomeName = document.getElementById("welcomeName");
+
+    // DISPLAY LOGGED-IN USER
+    function showLoggedInUser(user) {
+        accountForms.classList.add("hidden");
+        welcomeSection.classList.remove("hidden");
+        welcomeName.textContent = "Hello, " + user.name + "!";
+    }
+
+    // CHECK EXISTING LOGIN
+    function checkLogin() {
+        const savedUser = localStorage.getItem("booknestUser");
+
+        if (savedUser) {
+            try {
+                const user = JSON.parse(savedUser);
+                if (user && user.name) {
+                    showLoggedInUser(user);
+                }
+            } catch (error) {
+                localStorage.removeItem("booknestUser");
+            }
+        }
+    }
+
+    checkLogin();
+
+    // SIGNUP
+    document.getElementById("signupForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const message = document.getElementById("signupMessage");
+        const button = this.querySelector("button");
+
+        const name = document.getElementById("signupName").value.trim();
+        const email = document.getElementById("signupEmail").value.trim();
+        const password = document.getElementById("signupPassword").value;
+
+        message.textContent = "Connecting to server...";
+        message.style.color = "brown";
+        button.disabled = true;
+
+        try {
+            const response = await fetch(API_URL + "signup/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name, email, password })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Signup failed.");
+            }
+
+            message.textContent = data.message + " Please login now.";
+            message.style.color = "green";
+            this.reset();
+
+        } catch (error) {
+            console.error("Signup error:", error);
+            message.textContent = "Error: " + error.message;
+            message.style.color = "red";
+        } finally {
+            button.disabled = false;
+        }
+    });
+
+    // LOGIN
+    document.getElementById("loginForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const message = document.getElementById("loginMessage");
+        const button = this.querySelector("button");
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        message.textContent = "Checking your account...";
+        message.style.color = "brown";
+        button.disabled = true;
+
+        try {
+            const response = await fetch(API_URL + "login/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Login failed.");
+            }
+
+            localStorage.setItem("booknestUser", JSON.stringify(data));
+
+            message.textContent = "Login successful!";
+            message.style.color = "green";
+
+            this.reset();
+            showLoggedInUser(data);
+
+        } catch (error) {
+            console.error("Login error:", error);
+            message.textContent = "Error: " + error.message;
+            message.style.color = "red";
+        } finally {
+            button.disabled = false;
+        }
+    });
+
+    // LOGOUT
+    document.getElementById("logoutButton").addEventListener("click", async function() {
+
+        try {
+            await fetch(API_URL + "logout/", {
+                method: "POST",
+                credentials: "include"
+            });
+        } catch (error) {
+            console.error("Logout request error:", error);
+        }
+
+        localStorage.removeItem("booknestUser");
+
+        welcomeSection.classList.add("hidden");
+        accountForms.classList.remove("hidden");
+
+        document.getElementById("loginMessage").textContent =
+            "You have been logged out successfully.";
+
+        document.getElementById("loginMessage").style.color = "green";
+    });
+
+</script>
+
+</body>
+</html>

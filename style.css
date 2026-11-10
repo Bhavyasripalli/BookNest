@@ -1,0 +1,601 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff9eb;
+    color: #493323;
+}
+
+/* Navigation */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 6%;
+    background-color: #f5e7ca;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a, .nav-actions a {
+    text-decoration: none;
+    color: #493323;
+    font-weight: bold;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.cart {
+    background: #6b432b;
+    color: white !important;
+    padding: 10px 16px;
+    border-radius: 8px;
+}
+
+/* Hero */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 75px 10%;
+    background: #f2dfb9;
+}
+
+.hero-text {
+    max-width: 550px;
+}
+
+.tagline {
+    color: #93663b;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+.hero-text p {
+    line-height: 1.7;
+}
+
+.shop-btn {
+    display: inline-block;
+    margin-top: 25px;
+    background: #6b432b;
+    color: white;
+    padding: 14px 25px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.hero-image {
+    font-size: 130px;
+}
+
+/* Sections */
+.section {
+    padding: 65px 7%;
+    text-align: center;
+}
+
+.section h2, .about h2 {
+    font-size: 32px;
+}
+
+.section-subtitle {
+    margin: 12px 0 30px;
+    color: #806a56;
+}
+
+/* Categories */
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.category-card {
+    background: #f5e7ca;
+    padding: 30px 15px;
+    border-radius: 12px;
+    font-size: 35px;
+}
+
+.category-card h3 {
+    font-size: 17px;
+    margin-top: 12px;
+}
+
+/* Books */
+.featured {
+    background: #fffdf7;
+}
+
+.book-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.book-card {
+    background: #f5e7ca;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.book-cover {
+    background: #ead5ad;
+    font-size: 65px;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.book-card h3 {
+    margin: 15px 0 8px;
+}
+
+.book-card p {
+    margin-bottom: 10px;
+}
+
+.book-card button {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding: 11px;
+    background: #6b432b;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/* About */
+.about {
+    text-align: center;
+    padding: 60px 15%;
+    background: #f2dfb9;
+    line-height: 1.8;
+}
+
+.about h3 {
+    margin-top: 18px;
+}
+
+/* Footer */
+footer {
+    background: #493323;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .category-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .book-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .category-container,
+    .book-container {
+        grid-template-columns: 1fr;
+    }
+}
+#bookSearch {
+    width: 60%;
+    max-width: 500px;
+    padding: 14px;
+    margin: 20px auto 30px;
+    display: block;
+    border: 1px solid #b99470;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #fffdf7;
+    outline: none;
+}
+
+#bookSearch:focus {
+    border-color: #6b432b;
+    box-shadow: 0 0 5px #b99470;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px auto 30px;
+}
+
+.filter-buttons button {
+    padding: 10px 18px;
+    border: 1px solid #9b7655;
+    border-radius: 20px;
+    background: #f5e7ca;
+    color: #493323;
+    cursor: pointer;
+}
+
+.filter-buttons button:hover {
+    background: #6b432b;
+    color: white;
+}
+
+.add-cart {
+    width: 100%;
+    padding: 11px;
+    margin-top: 15px;
+    background: #6b432b;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.add-cart:hover {
+    background: #493323;
+}
+#cartItems {
+    max-width: 600px;
+    margin: 25px auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    background: #f5e7ca;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+}
+
+.remove-btn {
+    background: #8b3d2e;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#cartTotal {
+    margin-top: 20px;
+}
+.checkout-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 13px 25px;
+    background: #6b432b;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.checkout-btn:hover {
+    background: #493323;
+}
+.checkout-form {
+    max-width: 550px;
+    margin: 30px auto;
+    text-align: left;
+    background: #f5e7ca;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.checkout-form label {
+    display: block;
+    margin: 15px 0 7px;
+    font-weight: bold;
+}
+
+.checkout-form input,
+.checkout-form textarea,
+.checkout-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #c5aa85;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.checkout-form textarea {
+    min-height: 90px;
+}
+
+.checkout-submit {
+    width: 100%;
+    margin-top: 22px;
+    padding: 13px;
+    background: #6b432b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.account-section {
+    padding: 60px 20px;
+    background: #fff9eb;
+}
+
+.account-box {
+    max-width: 500px;
+    margin: auto;
+    padding: 30px;
+    background: #f5e7ca;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(73, 51, 35, 0.12);
+}
+
+.account-box h2,
+.account-box h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.account-box p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.account-box label {
+    display: block;
+    margin: 12px 0 7px;
+    font-weight: bold;
+}
+
+.account-box input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #c5aa85;
+    border-radius: 7px;
+}
+
+.account-box button {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    background: #6b432b;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.account-box button:hover {
+    background: #493323;
+}
+
+.account-box hr {
+    margin: 30px 0;
+    border: 1px solid #d8c29f;
+}
+.details-box {
+    max-width: 550px;
+    margin: 20px auto;
+    padding: 35px;
+    background: #f5e7ca;
+    border-radius: 15px;
+    line-height: 2;
+    box-shadow: 0 4px 15px rgba(73, 51, 35, 0.12);
+}
+
+.details-icon {
+    font-size: 75px;
+    margin-bottom: 15px;
+}
+
+.details-box h2 {
+    margin-bottom: 15px;
+}
+
+.details-box h3 {
+    margin: 20px 0;
+}
+.details-image {
+    width: 220px;
+    height: 280px;
+    object-fit: contain;
+    background: #ead5ad;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#bookDescription {
+    margin-top: 20px;
+    line-height: 1.8;
+    color: #806a56;
+}
+.details-image {
+    width: 220px;
+    height: 280px;
+    object-fit: contain;
+    background: #ead5ad;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#bookDescription {
+    margin-top: 20px;
+    line-height: 1.8;
+    color: #806a56;
+}
+
+/* Responsive Design */
+
+/* Tablets */
+@media (max-width: 900px) {
+
+    .book-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .nav-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 15px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .book-container {
+        grid-template-columns: 1fr;
+    }
+
+    .category-container {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    #bookSearch {
+        width: 90%;
+    }
+
+    .section {
+        padding: 25px 12px;
+    }
+
+}
+
+/* Book cover images */
+.book-card img {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    height: 260px;
+    object-fit: contain;
+    margin: 0 auto 15px;
+    border-radius: 8px;
+    background: #ead5ad;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* Emoji book covers */
+.book-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 220px;
+    height: 260px;
+    margin: 0 auto 15px;
+    background: #ead5ad;
+    border-radius: 8px;
+    font-size: 65px;
+}
+
+/* Mobile image adjustment */
+@media (max-width: 600px) {
+    .book-card img,
+    .book-cover {
+        max-width: 190px;
+        height: 240px;
+    }
+
+    .book-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Tablet image adjustment */
+@media (min-width: 601px) and (max-width: 900px) {
+    .book-card img,
+    .book-cover {
+        max-width: 200px;
+        height: 250px;
+    }
+}
+
