@@ -1,0 +1,18 @@
+# Python files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+
+# Private environment variables
+.env
+.env.*
+
+# Django generated files
+staticfiles/
+*.log
+
+# Local database (may contain customer information)
+backend/db.sqlite3
