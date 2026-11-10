@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+
+# Private credentials
+.env
+.env.*
+
+# Local database
+backend/db.sqlite3
+
+# Generated static files
+backend/staticfiles/
+
+# Logs
+*.log
