@@ -1,117 +1,115 @@
 [
-{
-  "model": "books.book",
-  "pk": 1,
-  "fields": {
-    "title": "Little Story Book",
-    "category": "children",
-    "book_format": "physical",
-    "price": "150.00",
-    "description": "A fun collection of stories for children",
-    "image": "images/children.jpg",
-    "is_available": true,
-    "created_at": "2026-11-08T03:31:44.803Z"
-  }
-},
-{
-  "model": "books.book",
-  "pk": 2,
-  "fields": {
-    "title": "Learn Python",
-    "category": "technology",
-    "book_format": "physical",
-    "price": "350.00",
-    "description": "A beginner-friendly guide to learning Python",
-    "image": "images/python.jpg",
-    "is_available": true,
-    "created_at": "2026-11-08T03:33:21.657Z"
-  }
-},
-{
-  "model": "books.book",
-  "pk": 3,
-  "fields": {
-    "title": "Think Positive",
-    "category": "motivational",
-    "book_format": "physical",
-    "price": "200.00",
-    "description": "An inspiring book about positive thinking and personal growth",
-    "image": "images/motivation.jpg",
-    "is_available": true,
-    "created_at": "2026-11-08T03:34:46.509Z"
-  }
-},
-{
-  "model": "books.book",
-  "pk": 4,
-  "fields": {
-    "title": "Adventure Tales",
-    "category": "fiction",
-    "book_format": "physical",
-    "price": "180.00",
-    "description": "Exciting adventure stories for readers",
-    "image": "images/adventure.jpg",
-    "is_available": true,
-    "created_at": "2026-11-08T03:36:08.191Z"
-  }
-},
-{
-  "model": "books.book",
-  "pk": 5,
-  "fields": {
-    "title": "Engineering Mathematics",
-    "category": "educational",
-    "book_format": "physical",
-    "price": "400.00",
-    "description": "Mathematics reference book for engineering students",
-    "image": "",
-    "is_available": true,
-    "created_at": "2026-11-08T03:36:56.489Z"
-  }
-},
-{
-  "model": "books.book",
-  "pk": 6,
-  "fields": {
-    "title": "UPSC Preparation Guide",
-    "category": "competitive",
-    "book_format": "physical",
-    "price": "300.00",
-    "description": "A preparation guide for UPSC aspirants",
-    "image": "",
-    "is_available": true,
-    "created_at": "2026-11-08T03:37:45.042Z"
-  }
-},
-{
-  "model": "books.book",
-  "pk": 7,
-  "fields": {
-    "title": "HTML Beginner Guide",
-    "category": "technology",
-    "book_format": "free_ebook",
-    "price": "0.00",
-    "description": "Learn HTML fundamentals with simple examples",
-    "image": "",
-    "is_available": true,
-    "created_at": "2026-11-08T03:38:22.824Z"
-  }
-},
-{
-  "model": "books.book",
-  "pk": 8,
-  "fields": {
-    "title": "The Power of Habits",
-    "category": "motivational",
-    "book_format": "premium_ebook",
-    "price": "99.00",
-    "description": "Learn how habits can improve your everyday life",
-    "image": "",
-    "is_available": true,
-    "created_at": "2026-11-08T03:39:20.363Z"
-  }
-}
+    {
+        "model": "books.book",
+        "pk": 1,
+        "fields": {
+            "title": "Little Story Book",
+            "category": "children",
+            "book_format": "physical",
+            "price": "150.00",
+            "description": "A fun collection of stories for children",
+            "image": "images/children.jpg",
+            "is_available": true,
+            "created_at": "2026-11-08T03:31:44.803Z"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 2,
+        "fields": {
+            "title": "Learn Python",
+            "category": "technology",
+            "book_format": "physical",
+            "price": "350.00",
+            "description": "A beginner-friendly guide to learning Python",
+            "image": "images/python.jpg",
+            "is_available": true,
+            "created_at": "2026-11-08T03:33:21.657Z"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 3,
+        "fields": {
+            "title": "Think Positive",
+            "category": "motivational",
+            "book_format": "physical",
+            "price": "200.00",
+            "description": "An inspiring book about positive thinking and personal growth",
+            "image": "images/motivation.jpg",
+            "is_available": true,
+            "created_at": "2026-11-08T03:34:46.509Z"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 4,
+        "fields": {
+            "title": "Adventure Tales",
+            "category": "fiction",
+            "book_format": "physical",
+            "price": "180.00",
+            "description": "Exciting adventure stories for readers",
+            "image": "images/adventure.jpg",
+            "is_available": true,
+            "created_at": "2026-11-08T03:36:08.191Z"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 5,
+        "fields": {
+            "title": "Engineering Mathematics",
+            "category": "educational",
+            "book_format": "physical",
+            "price": "400.00",
+            "description": "Mathematics reference book for engineering students",
+            "image": "",
+            "is_available": true,
+            "created_at": "2026-11-08T03:36:56.489Z"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 6,
+        "fields": {
+            "title": "UPSC Preparation Guide",
+            "category": "competitive",
+            "book_format": "physical",
+            "price": "300.00",
+            "description": "A preparation guide for UPSC aspirants",
+            "image": "",
+            "is_available": true,
+            "created_at": "2026-11-08T03:37:45.042Z"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 7,
+        "fields": {
+            "title": "HTML Beginner Guide",
+            "category": "technology",
+            "book_format": "free_ebook",
+            "price": "0.00",
+            "description": "Learn HTML fundamentals with simple examples",
+            "image": "",
+            "is_available": true,
+            "created_at": "2026-11-08T03:38:22.824Z"
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 8,
+        "fields": {
+            "title": "The Power of Habits",
+            "category": "motivational",
+            "book_format": "premium_ebook",
+            "price": "99.00",
+            "description": "Learn how habits can improve your everyday life",
+            "image": "",
+            "is_available": true,
+            "created_at": "2026-11-08T03:39:20.363Z"
+        }
+    }
 ]
-﻿
-  
-   
+PS C:\Users\pandu\OneDrive\Documents\BookNest\backend>
