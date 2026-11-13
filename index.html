@@ -417,7 +417,7 @@
             const image = document.createElement("img");
 
             if (book.image) {
-                image.src = book.image;
+               image.src = book.image.split("/").pop();
                 image.alt = book.title;
             } else {
                 image.style.display = "none";
